@@ -5,10 +5,13 @@ import { Bars3CenterLeftIcon, MagnifyingGlassIcon } from 'react-native-heroicons
 import { styles } from "../theme";
 import { TrendingMovies } from "../components/trendingMovies";
 import { useState } from "react";
+import { MovieList } from "../components/movieList";
 
 const ios = Platform.OS === 'ios';
 export default function HomeScreen() {
     const [trending, setTrendig] = useState([1, 2, 3])
+    const [upcoming, setUpcoming] = useState([1, 2, 3])
+    const [topRated, setTopRated] = useState([1, 2, 3])
 
     return (
         <View className="flex-1 bg-neutral-800">
@@ -33,6 +36,11 @@ export default function HomeScreen() {
                 {/* Trending movies caroules */}
                 <TrendingMovies data={trending} />
 
+                {/* upcoming movies row */}
+                <MovieList title="UpComing" data={upcoming} />
+
+                {/* top rated movies row */}
+                <MovieList title="Top Rated" data={topRated} />
             </ScrollView>
         </View>
     )
