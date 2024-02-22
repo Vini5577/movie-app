@@ -11,7 +11,7 @@ var { width, height } = Dimensions.get('window');
 
 export const TrendingMovies: React.FC<trending> = ({ data }) => {
     const navigation = useNavigation();
-    const handleClick = () => {
+    const handleClick = (item) => {
         navigation.navigate('Movie', item)
     }
     return (
@@ -35,10 +35,10 @@ interface Props {
     handleClick: any,
 }
 
-const MovieCard: React.FC<Props> = ({ item, handleClick }: Props) => {
+const MovieCard: React.FC<Props> = ({ item, handleClick }) => {
 
     return (
-        <TouchableWithoutFeedback onPress={handleClick}>
+        <TouchableWithoutFeedback onPress={() => handleClick(item)}>
             <Image
                 source={require('../assets/poster/poster-1.jpg')}
                 style={{

@@ -26,7 +26,7 @@ export const MovieList: React.FC<movies> = ({ title, data }: movies) => {
             <ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{ paddingHorizontal: 15 }}
+                contentContainerStyle={{ paddingTop: 15 }}
             >
                 {
                     data.map((item: any, index: any) => {
