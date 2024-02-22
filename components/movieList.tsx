@@ -5,12 +5,13 @@ import { useNavigation } from '@react-navigation/native'
 
 interface movies {
     title: string,
-    data: any
+    data: any,
+    hideSeeAll: boolean
 }
 
 var { width, height } = Dimensions.get('window');
 
-export const MovieList: React.FC<movies> = ({ title, data }: movies) => {
+export const MovieList: React.FC<movies> = ({ title, data, hideSeeAll }: movies) => {
     let movieName = 'Spider-Man 2'
     const navigation = useNavigation();
 
@@ -18,9 +19,14 @@ export const MovieList: React.FC<movies> = ({ title, data }: movies) => {
         <View className='mb-8 spcae-y-4'>
             <View className='mx-4 flex-row justify-between items-center'>
                 <Text className='text-white text-xl'>{title}</Text>
-                <TouchableOpacity>
-                    <Text style={styles.text} className='text-lg'>See All</Text>
-                </TouchableOpacity>
+                {
+                    !hideSeeAll && (
+                        <TouchableOpacity>
+                            <Text style={styles.text} className='text-lg'>See All</Text>
+                        </TouchableOpacity>
+                    )
+                }
+
             </View>
             {/* moview row */}
             <ScrollView
@@ -33,7 +39,7 @@ export const MovieList: React.FC<movies> = ({ title, data }: movies) => {
                         return (
                             <TouchableWithoutFeedback
                                 key={index}
-                                onPress={() => navigation.navigate('Movie', item)}
+                                onPress={() => navigation.push('Movie', item)}
                             >
                                 <View className='spcae-y-1 mr-4'>
                                     <Image
@@ -42,7 +48,7 @@ export const MovieList: React.FC<movies> = ({ title, data }: movies) => {
                                         style={{ width: width * 0.33, height: height * 0.22 }}
                                     />
                                     <Text className='text-neutral-300 ml-1'>{
-                                        movieName.length > 14 ? movieName.slice(0,14) + '...' : movieName
+                                        movieName.length > 14 ? movieName.slice(0, 14) + '...' : movieName
                                     }</Text>
                                 </View>
                             </TouchableWithoutFeedback>

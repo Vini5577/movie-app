@@ -6,6 +6,8 @@ import { HeartIcon } from 'react-native-heroicons/solid'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { styles, themeColors } from '../theme'
 import { LinearGradient } from 'expo-linear-gradient'
+import Cast from '../components/cast'
+import { MovieList } from '../components/movieList'
 
 var { width, height } = Dimensions.get('window');
 const ios = Platform.OS == 'ios';
@@ -15,6 +17,9 @@ export const MovieScreen = () => {
   const { params: item } = useRoute()
   const [isFavourite, toggleFavourite] = useState(false);
   const navigation = useNavigation();
+  const [cast, setCast] = useState([1, 2, 3, 4, 5]);
+  const [similarMovies, setSimilarMovies] = useState([1, 2, 3, 4, 5]);
+
   let movieName = 'Spider-Man No Way Home'
 
   useEffect(() => {
@@ -57,8 +62,35 @@ export const MovieScreen = () => {
         <Text className='text-white text-center text-3xl font-bold tracking-wider'>
           {movieName}
         </Text>
+        {/* status, release, runtime */}
+        <Text className='text-neutral-400 font-semibold text-base text-center'>
+          RELEASED • 2021 • 170min
+        </Text>
 
+        {/* genre */}
+        <View className='flex-row justify-center mx-4 space-x-2'>
+          <Text className='text-neutral-400 font-semibold text-base text-center'>
+            Action •
+          </Text>
+          <Text className='text-neutral-400 font-semibold text-base text-center'>
+            Adventure •
+          </Text>
+          <Text className='text-neutral-400 font-semibold text-base text-center'>
+            Fantasy
+          </Text>
+        </View>
+
+        {/* description */}
+        <Text className='text-neutral-400 mx-4 tracking-wide'>
+          Peter Parker's secret identity is revealed to the entire world. Desperate for help, Peter turns to Doctor Strange to make the world forget that he is Spider-Man. The spell goes horribly wrong and shatters the multiverse, bringing in monstrous villains that could destroy the world. The Multiverse Unleashed.
+        </Text>
       </View>
+
+      {/* cast */}
+      <Cast navigation={navigation} cast={cast} />
+
+      {/* similar movies */}
+      <MovieList title="Similiar Movies" hideSeeAll={true} data={similarMovies} />
     </ScrollView>
   )
 }
