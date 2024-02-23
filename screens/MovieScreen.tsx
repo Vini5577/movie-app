@@ -1,13 +1,14 @@
 import { useNavigation, useRoute } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
-import { Dimensions, Image, Platform, ScrollView, Text, Pressable, View } from 'react-native'
+import { Dimensions, Image, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { ChevronLeftIcon } from 'react-native-heroicons/outline'
 import { HeartIcon } from 'react-native-heroicons/solid'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { styles, themeColors } from '../theme'
 import { LinearGradient } from 'expo-linear-gradient'
-import Cast from '../components/cast'
+
 import { MovieList } from '../components/movieList'
+import { Cast } from '../components/cast'
 
 var { width, height } = Dimensions.get('window');
 const ios = Platform.OS == 'ios';
@@ -31,15 +32,15 @@ export const MovieScreen = () => {
       contentContainerStyle={{ paddingBottom: 20 }}
       className="flex-1 bg-neutral-900"
     >
-      {/* back bytton and movie poster */}
+      {/* back button and movie poster */}
       <View className='w-full'>
         <SafeAreaView className={"absolute z-20 w-full flex-row justify-between items-center px-3" + topMargin}>
-          <Pressable onPress={() => navigation.goBack()} style={styles.background} className='rounded-xl p-1'>
+          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.background} className='rounded-xl p-1'>
             <ChevronLeftIcon size="28" strokeWidth={2.5} color="white" />
-          </Pressable >
-          <Pressable onPress={() => toggleFavourite(!isFavourite)}>
+          </TouchableOpacity >
+          <TouchableOpacity onPress={() => toggleFavourite(!isFavourite)}>
             <HeartIcon size="35" color={isFavourite ? themeColors.background : "white"} />
-          </Pressable >
+          </TouchableOpacity >
         </SafeAreaView>
         <View>
           <Image

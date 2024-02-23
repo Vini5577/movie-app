@@ -6,7 +6,7 @@ interface CastProps {
     navigation: any
 }
 
-const Cast: React.FC<CastProps> = ({ cast, navigation }) => {
+export const Cast: React.FC<CastProps> = ({ cast, navigation }) => {
     let personName = 'Tom Holland';
     let characterName = 'Spider-man/Peter Parker'
 
@@ -47,5 +47,3 @@ const Cast: React.FC<CastProps> = ({ cast, navigation }) => {
         </View>
     );
 }
-
-export default Cast;
