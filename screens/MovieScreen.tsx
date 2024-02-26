@@ -100,7 +100,7 @@ export const MovieScreen = () => {
       <Cast navigation={navigation} cast={cast} />
 
       {/* similar movies */}
-      <MovieList title="Similiar Movies" hideSeeAll={true} data={similarMovies} />
+      {/* <MovieList title="Similiar Movies" hideSeeAll={true} data={similarMovies} /> */}
     </ScrollView>
   )
 }

@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react'
 import { Dimensions, Image, Text, TouchableWithoutFeedback, View } from 'react-native'
 import Carousel from 'react-native-snap-carousel-v4'
+import { image500 } from '../api/moviedb';
 
 interface trending {
     data: any,
@@ -11,7 +12,7 @@ var { width, height } = Dimensions.get('window');
 
 export const TrendingMovies: React.FC<trending> = ({ data }) => {
     const navigation = useNavigation();
-    const handleClick = (item) => {
+    const handleClick = (item: any) => {
         navigation.navigate('Movie', item)
     }
     return (
@@ -36,11 +37,11 @@ interface Props {
 }
 
 const MovieCard: React.FC<Props> = ({ item, handleClick }) => {
-
     return (
         <TouchableWithoutFeedback onPress={() => handleClick(item)}>
             <Image
-                source={require('../assets/poster/poster-1.jpg')}
+                // source={require('../assets/poster/poster-1.jpg')}
+                source={{ uri: image500(item.poster_path) }}
                 style={{
                     width: width * 0.6,
                     height: height * 0.4
