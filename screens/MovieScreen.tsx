@@ -9,6 +9,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 
 import { MovieList } from '../components/movieList'
 import { Cast } from '../components/cast'
+import Loading from '../components/loading'
 
 var { width, height } = Dimensions.get('window');
 const ios = Platform.OS == 'ios';
@@ -20,6 +21,7 @@ export const MovieScreen = () => {
   const navigation = useNavigation();
   const [cast, setCast] = useState([1, 2, 3, 4, 5]);
   const [similarMovies, setSimilarMovies] = useState([1, 2, 3, 4, 5]);
+  const [loading, setLoading] = useState(false);
 
   let movieName = 'Spider-Man No Way Home'
 
@@ -42,18 +44,25 @@ export const MovieScreen = () => {
             <HeartIcon size="35" color={isFavourite ? themeColors.background : "white"} />
           </TouchableOpacity >
         </SafeAreaView>
-        <View>
-          <Image
-            source={require('../assets/poster/poster-1.jpg')}
-            style={{ width: width, height: height * 0.55 }} />
-          <LinearGradient
-            colors={['transparent', 'rgba(23,23,23, 0.8)', 'rgba(23,23,23, 1)']}
-            style={{ width, height: height * 0.40 }}
-            start={{ x: 0.5, y: 0 }}
-            end={{ x: 0.5, y: 1 }}
-            className='absolute bottom-0'
-          />
-        </View>
+        {
+          loading ? (
+            <Loading />
+          ) : (
+            <View>
+              <Image
+                source={require('../assets/poster/poster-1.jpg')}
+                style={{ width: width, height: height * 0.55 }} />
+              <LinearGradient
+                colors={['transparent', 'rgba(23,23,23, 0.8)', 'rgba(23,23,23, 1)']}
+                style={{ width, height: height * 0.40 }}
+                start={{ x: 0.5, y: 0 }}
+                end={{ x: 0.5, y: 1 }}
+                className='absolute bottom-0'
+              />
+            </View>
+          )
+        }
+
       </View>
 
       {/* movie details */}
